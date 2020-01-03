@@ -9,7 +9,7 @@
 /**
  * Description of Brand
  *
- * @author U s E r ¨
+ * @author W j K n ¨
  */
 class Brand {
 

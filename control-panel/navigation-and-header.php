@@ -300,13 +300,13 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="view-products.php">
+                            <a href="create-product.php">
                                 <i class="material-icons">add</i>
                                 <span>Add New</span>
                             </a>
                         </li>
                         <li>
-                            <a href="view-products.php">
+                            <a href="manage-products.php">
                                 <i class="material-icons">list</i>
                                 <span>Manage</span>
                             </a>

@@ -12,8 +12,8 @@ if (isset($_POST['create'])) {
     $PRODUCT_PHOTO->caption = $_POST['caption'];
     $PRODUCT_PHOTO->queue = 0;
 
-    $dir_dest = '../../upload/product-type/product/gallery/';
-    $dir_dest_thumb = '../../upload/product-type/product/gallery/thumb/';
+    $dir_dest = '../../upload/product/gallery/';
+    $dir_dest_thumb = '../../upload/product/gallery/thumb/';
 
     $handle = new Upload($_FILES['image']);
     $imgName = null;
@@ -88,8 +88,8 @@ if (isset($_POST['create'])) {
 
 if (isset($_POST['update'])) {
 
-    $dir_dest = '../../upload/product-type/product/gallery/';
-    $dir_dest_thumb = '../../upload/product-type/product/gallery/thumb/';
+    $dir_dest = '../../upload/product/gallery/';
+    $dir_dest_thumb = '../../upload/product/gallery/thumb/';
 
     $handle = new Upload($_FILES['image']);
 

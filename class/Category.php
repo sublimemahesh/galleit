@@ -9,7 +9,7 @@
 /**
  * Description of Category
  *
- * @author U s E r ¨
+ * @author W j K n ¨
  */
 class Category {
 
