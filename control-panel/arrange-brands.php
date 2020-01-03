@@ -2,14 +2,14 @@
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$CATEGORY = new Category(NULL);
+$BRAND = new Brand(NULL);
 ?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Category</title>
+        <title>Brand</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -35,29 +35,29 @@ $CATEGORY = new Category(NULL);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Arrange Category</h2>
+                                <h2>Arrange Brand</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-categories.php">
+                                        <a href="manage-brands.php">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="body">
-                                <form method="post" action="post-and-get/category.php" class="form-horizontal" >
+                                <form method="post" action="post-and-get/brand.php" class="form-horizontal" >
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 arrange-container">
                                                 <ul id="sortable">
                                                     <?php
-                                                    if (count($CATEGORY->all()) > 0) {
-                                                        foreach ($CATEGORY->all() as $key => $img) {
+                                                    if (count($BRAND->all()) > 0) {
+                                                        foreach ($BRAND->all() as $key => $img) {
                                                             ?>
                                                             <div class="col-md-3" style="list-style: none;">
                                                                 <li class="ui-state-default">
                                                                     <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/category/<?php echo $img["image_name"]; ?>" alt=""/>
+                                                                    <img class="img-responsive" src="../upload/brand/<?php echo $img["image_name"]; ?>" alt=""/>
                                                                     <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
                                                                 </li>
@@ -67,7 +67,7 @@ $CATEGORY = new Category(NULL);
                                                         }
                                                     } else {
                                                         ?> 
-                                                        <b>No categories in the database.</b> 
+                                                        <b>No brands in the database.</b> 
                                                     <?php } ?> 
 
                                                 </ul>  
