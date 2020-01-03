@@ -1,11 +1,11 @@
 $(document).ready(function () {
-    $('.delete-ingredient').click(function () {
+    $('.delete-category').click(function () {
 
         var id = $(this).attr("data-id");
 
         swal({
             title: "Are you sure?",
-            text: "You will not be able to recover this imaginary file!",
+            text: "You will not be able to recover this category!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -14,7 +14,7 @@ $(document).ready(function () {
         }, function () {
 
             $.ajax({
-                url: "delete/ajax/ingredients.php",
+                url: "delete/ajax/category.php",
                 type: "POST",
                 data: {id: id, option: 'delete'},
                 dataType: "JSON",
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
                         swal({
                             title: "Deleted!",
-                            text: "Your imaginary file has been deleted.",
+                            text: "Category has been deleted.",
                             type: 'success',
                             timer: 2000,
                             showConfirmButton: false

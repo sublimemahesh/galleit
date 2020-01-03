@@ -120,7 +120,6 @@ if (isset($_GET['id'])) {
                                                         <a href="edit-product.php?id=<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
                                                         <a href="arrange-products.php">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
                                                         <a href="view-product-photos.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
-                                                        <a href="view-ingredients.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-dashboard arrange-btn"></button></a>
                                                     </div>
                                                 </div>
                                             </div>

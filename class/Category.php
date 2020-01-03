@@ -1,38 +1,58 @@
 <?php
-/**
- * Description of BeforeAfterResult
- *
- * @author `W j K n``
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-class BeforeAfterResult {
+
+/**
+ * Description of Category
+ *
+ * @author U s E r ¨
+ */
+class Category {
 
     public $id;
-    public $caption;
-    public $image_name;
+    public $name;
+    public $imageName;
+    public $isActive;
     public $queue;
 
     public function __construct($id) {
         if ($id) {
-            $query = "SELECT `id`,`caption`,`image_name`,`queue` FROM `before_after_result` WHERE `id`=" . $id;
+
+            $query = "SELECT `id`,`name`,`image_name`,`is_active`,`queue` FROM `category` WHERE `id`=" . $id;
+
             $db = new Database();
+
             $result = mysql_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
-            $this->caption = $result['caption'];
-            $this->image_name = $result['image_name'];
+            $this->name = $result['name'];
+            $this->imageName = $result['image_name'];
+            $this->isActive = $result['is_active'];
             $this->queue = $result['queue'];
+
             return $this;
         }
     }
+
     public function create() {
-        $query = "INSERT INTO `before_after_result` (`caption`,`image_name`,`queue`) VALUES  ('"
-                . $this->caption . "','"
-                . $this->image_name . "', '"
+
+        $query = "INSERT INTO `category` (`name`,`image_name`,`is_active`,`queue`) VALUES  ('"
+                . $this->name . "','"
+                . $this->imageName . "', '"
+                . $this->isActive . "', '"
                 . $this->queue . "')";
+
         $db = new Database();
+
         $result = $db->readQuery($query);
+
         if ($result) {
             $last_id = mysql_insert_id();
+
             return $this->__construct($last_id);
         } else {
             return FALSE;
@@ -40,25 +60,32 @@ class BeforeAfterResult {
     }
 
     public function all() {
-        $query = "SELECT * FROM `before_after_result` ORDER BY queue ASC";
+
+        $query = "SELECT * FROM `category` ORDER BY queue ASC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
+
         while ($row = mysql_fetch_array($result)) {
             array_push($array_res, $row);
         }
+
         return $array_res;
     }
 
     public function update() {
-        $query = "UPDATE  `before_after_result` SET "
-                . "`caption` ='" . $this->caption . "', "
-                . "`image_name` ='" . $this->image_name . "', "
+
+        $query = "UPDATE  `category` SET "
+                . "`name` ='" . $this->name . "', "
+                . "`image_name` ='" . $this->imageName . "', "
+                . "`is_active` ='" . $this->isActive . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
+
         $result = $db->readQuery($query);
+
         if ($result) {
             return $this->__construct($this->id);
         } else {
@@ -67,13 +94,17 @@ class BeforeAfterResult {
     }
 
     public function delete() {
-        $query = 'DELETE FROM `before_after_result` WHERE id="' . $this->id . '"';
+
+        $query = 'DELETE FROM `category` WHERE id="' . $this->id . '"';
+        unlink(Helper::getSitePath() . "upload/category/" . $this->imageName);
+
         $db = new Database();
+
         return $db->readQuery($query);
     }
 
     public function arrange($key, $img) {
-        $query = "UPDATE `before_after_result` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $query = "UPDATE `category` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
         $db = new Database();
         $result = $db->readQuery($query);
         return $result;

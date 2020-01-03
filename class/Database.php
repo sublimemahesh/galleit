@@ -21,7 +21,7 @@ class Database {
 
 
       private $host = 'localhost';
-      private $name = 'msr_marketing';
+      private $name = 'galleit';
       private $user = 'root';
       private $password = '';
 
