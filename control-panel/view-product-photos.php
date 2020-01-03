@@ -46,7 +46,7 @@ $PRODUCT = new Product($id)
                                 <h2>Create Product Photos</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="view-products.php">
+                                        <a href="manage-products.php">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
@@ -87,7 +87,7 @@ $PRODUCT = new Product($id)
                                             ?>
                                             <div class="col-md-3"  id="div<?php echo $product_photo['id']; ?>">
                                                 <div class="photo-img-container">
-                                                    <img src="../upload/product-type/product/gallery/thumb/<?php echo $product_photo['image_name']; ?>" class="img-responsive ">
+                                                    <img src="../upload/product/gallery/thumb/<?php echo $product_photo['image_name']; ?>" class="img-responsive ">
                                                 </div>
                                                 <div class="img-caption">
                                                     <p class="maxlinetitle"><?php echo $product_photo['caption']; ?></p>

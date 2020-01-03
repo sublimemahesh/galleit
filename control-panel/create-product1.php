@@ -96,41 +96,9 @@ if (isset($_GET['id'])) {
                                     </div>
 
                                     <div class="col-md-12"> 
-                                        <input type="hidden" id="id" value="<?php echo $PRODUCT_TYPE->id; ?>" name="id"/>
                                         <input type="submit" name="create" class="btn btn-primary TYPEm-t-15 waves-effect" value="create"/>
                                     </div>
                                 </form>
-                                <div class="row">
-                                </div>
-                                <hr/>
-                                <div class="row clearfix">
-                                    <?php
-                                    $PRODUCT = Product::all();
-                                    if (count($PRODUCT) > 0) {
-                                        foreach ($PRODUCT as $key => $product) {
-                                            ?>
-                                            <div class="col-md-3"  id="div<?php echo $product['id']; ?>">
-                                                <div class="photo-img-container">
-                                                    <img src="../upload/product-type/product/<?php echo $product['image_name']; ?>" class="img-responsive ">
-                                                </div>
-                                                <div class="img-caption">
-                                                    <p class="maxlinetitle"><?php echo $product['name']; ?></p>
-                                                    <div class="d">
-                                                        <a href="#" class="delete-product" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
-                                                        <a href="edit-product.php?id=<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
-                                                        <a href="arrange-products.php">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
-                                                        <a href="view-product-photos.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php
-                                        }
-                                    } else {
-                                        ?> 
-                                        <b style="padding-left: 15px;">No Products in the database.</b> 
-                                    <?php } ?> 
-
-                                </div>
                             </div>
                         </div>
                     </div>
