@@ -5,9 +5,9 @@ include_once(dirname(__FILE__) . '/../../auth.php');
 
 if ($_POST['option'] == 'delete') {
 
-    $CATEGORY = new Category($_POST['id']);
+    $BRAND = new Brand($_POST['id']);
 
-    $result = $CATEGORY->delete();
+    $result = $BRAND->delete();
 
     if ($result) {
         $data = array("status" => TRUE);
