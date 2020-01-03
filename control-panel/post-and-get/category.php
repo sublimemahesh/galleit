@@ -2,227 +2,131 @@
 
 include_once(dirname(__FILE__) . '/../../class/include.php');
 
-
-
 if (isset($_POST['create'])) {
 
-    $INGREDIENTS = new Ingredients(NULL);
+    $CATEGORY = new Category(NULL);
     $VALID = new Validator();
 
-    $INGREDIENTS->product = $_POST['id'];
-    $INGREDIENTS->caption = $_POST['caption'];
+    $CATEGORY->name = $_POST['name'];
+    $CATEGORY->isActive = 1;
 
-    $dir_dest = '../../upload/product-type/product/ingredients/';
-   
+    $dir_dest = '../../upload/category/';
+
     $handle = new Upload($_FILES['image']);
-    $imgName = null;
-    $img = Helper::randamId();
 
+    $imgName = null;
 
     if ($handle->uploaded) {
-
         $handle->image_resize = true;
-
-        $handle->file_new_name_body = TRUE;
-
-        $handle->file_overwrite = TRUE;
-
         $handle->file_new_name_ext = 'jpg';
-
         $handle->image_ratio_crop = 'C';
-
-        $handle->file_new_name_body = $img;
-
-        $handle->image_x = 200;
-
-        $handle->image_y = 200;
-
-
+        $handle->file_new_name_body = Helper::randamId();
+        $handle->image_x = 300;
+        $handle->image_y = 300;
 
         $handle->Process($dir_dest);
 
-
-
         if ($handle->processed) {
-
             $info = getimagesize($handle->file_dst_pathname);
-
             $imgName = $handle->file_dst_name;
         }
-
-
     }
 
+    $CATEGORY->imageName = $imgName;
 
-
-    $INGREDIENTS->image_name = $imgName;
-
-
-
-    $VALID->check($INGREDIENTS, [
-        'caption' => ['required' => TRUE],
-        'image_name' => ['required' => TRUE]
+    $VALID->check($CATEGORY, [
+        'name' => ['required' => TRUE],
+        'imageName' => ['required' => TRUE]
     ]);
 
-
-
     if ($VALID->passed()) {
-
-        $INGREDIENTS->create();
-
-
+        $CATEGORY->create();
 
         if (!isset($_SESSION)) {
-
             session_start();
         }
-
         $VALID->addError("Your data was saved successfully", 'success');
-
         $_SESSION['ERRORS'] = $VALID->errors();
-
-
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
 
-
-
         if (!isset($_SESSION)) {
-
             session_start();
         }
 
-
-
         $_SESSION['ERRORS'] = $VALID->errors();
-
-
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
 
-
-
 if (isset($_POST['update'])) {
-
-
-    $dir_dest = '../../upload/product-type/product/ingredients/';
-    
+    $dir_dest = '../../upload/category/';
 
     $handle = new Upload($_FILES['image']);
 
-
-
-    $img = $_POST ["oldImageName"];
-
-
+    $imgName = null;
 
     if ($handle->uploaded) {
-
         $handle->image_resize = true;
-
         $handle->file_new_name_body = TRUE;
-
         $handle->file_overwrite = TRUE;
-
         $handle->file_new_name_ext = FALSE;
-
         $handle->image_ratio_crop = 'C';
-
-        $handle->file_new_name_body = $img;
-
-        $handle->image_x = 200;
-
-        $handle->image_y = 200;
-
-
+        $handle->file_new_name_body = $_POST ["oldImageName"];
+        $handle->image_x = 300;
+        $handle->image_y = 300;
 
         $handle->Process($dir_dest);
 
-
-
         if ($handle->processed) {
-
             $info = getimagesize($handle->file_dst_pathname);
-
-            $img = $handle->file_dst_name;
+            $imgName = $handle->file_dst_name;
         }
-
     }
 
-    $INGREDIENTS = new Ingredients($_POST['id']);
-
-
-
-    $INGREDIENTS->image_name = $_POST['oldImageName'];
-
-    $INGREDIENTS->caption = $_POST['caption'];
-
+    $CATEGORY = new Category($_POST['id']);
+    $CATEGORY->imageName = $_POST['oldImageName'];
+    $CATEGORY->name = $_POST['name'];
+    $CATEGORY->isActive = $_POST['is_active'];
 
 
     $VALID = new Validator();
-
-    $VALID->check($INGREDIENTS, [
-        'caption' => ['required' => TRUE],
-        'image_name' => ['required' => TRUE]
+    $VALID->check($CATEGORY, [
+        'name' => ['required' => TRUE],
+        'imageName' => ['required' => TRUE]
     ]);
 
-
-
     if ($VALID->passed()) {
-
-        $INGREDIENTS->update();
-
-
+        $CATEGORY->update();
 
         if (!isset($_SESSION)) {
-
             session_start();
         }
-
         $VALID->addError("Your changes saved successfully", 'success');
-
         $_SESSION['ERRORS'] = $VALID->errors();
-
-
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
 
-
-
         if (!isset($_SESSION)) {
-
             session_start();
         }
 
-
-
         $_SESSION['ERRORS'] = $VALID->errors();
-
-
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
-
 
 
 if (isset($_POST['save-data'])) {
 
-
-
     foreach ($_POST['sort'] as $key => $img) {
-
         $key = $key + 1;
-
-
-
-        $INGREDIENTS = Ingredients::arrange($key, $img);
-
-
+        
+        $CATEGORY = Category::arrange($key, $img);
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
